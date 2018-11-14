@@ -3,6 +3,8 @@ package com.company;
 public class FrogSimulation {
     private int goalDistance;
     private int maxHops;
+    public int[] testHops;
+    public int nextHopIndex;
 
     public FrogSimulation(int dist, int numHops)
     {
@@ -12,7 +14,16 @@ public class FrogSimulation {
 
     private int hopDistance()
     {
-        return (int)(Math.random() *41 - 8);
+        if(nextHopIndex < testHops.length)
+        {
+            int x = testHops[nextHopIndex];
+            nextHopIndex++;
+            return x;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public boolean simulate()
@@ -27,7 +38,7 @@ public class FrogSimulation {
         return(currDist >= goalDistance);
     }
 
-    public double runSimulation(int num)
+    public double runSimulations(int num)
     {
         int numtrue = 0;
         for(int i = 0; i < num; i ++)
